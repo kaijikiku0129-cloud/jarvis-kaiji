@@ -644,7 +644,10 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
     <textarea id="ai-chat-inp" placeholder="今日の相談、悩み、気づき、相談なんでも..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAIChat();}"></textarea>
     <button class="btn bp" id="ai-send-btn" onclick="sendAIChat()" style="padding:.5rem .85rem;height:44px">送信</button>
   </div>
-  <button class="btn bgh bbl mt2" onclick="clearAIChat()" style="font-size:.72rem">会話をリセット</button>
+  <div class="flex gap1 mt2">
+    <button class="btn bgh" onclick="clearAIChat()" style="font-size:.72rem;flex:1">会話をリセット</button>
+    <button class="btn bo" onclick="nav('settings')" style="font-size:.72rem;flex:1">⚙️ APIキー設定</button>
+  </div>
 </div>
 
 <!-- SETTINGS -->
