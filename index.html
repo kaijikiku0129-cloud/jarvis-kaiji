@@ -337,46 +337,14 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
 <div id="page-today" class="page active">
   <div class="ph" style="margin-bottom:.75rem"><h1 id="t-h"></h1><p id="t-sub"></p></div>
 
-  <!-- ① 今週テーマバナー -->
+  <!-- 今週テーマバナー -->
   <div class="wk-banner">
     <div class="wk-banner-label">📋 今週のテーマ</div>
     <div class="wk-banner-text" id="wk-theme-disp">→ 目標ツリーで今週のテーマを設定してください</div>
     <div class="wk-banner-sub"><span class="wk-banner-days">残り<span id="wk-days-left">?</span>日</span><span id="wk-goal-year" class="tc-m">25歳：年収1500-2000万 + 自分の城</span></div>
   </div>
 
-  <!-- ② スタッツ -->
-  <div class="sr mb2">
-    <div class="sc"><div class="sl">😴 昨夜の睡眠</div><div class="sv" id="s-slp">--</div><div class="ss" id="s-slp-s">起床時間を入力</div></div>
-    <div class="sc"><div class="sl">今日のスコア</div><div class="sv tc-v" id="s-sc">0%</div><div class="ss" id="s-pts">0点</div></div>
-    <div class="sc"><div class="sl">🔥 ストリーク</div><div class="sv tc-a" id="s-st">0</div><div class="ss">日連続 <span id="streak-disp"></span></div></div>
-    <div class="sc"><div class="sl">今月売上</div><div class="sv tc-g" id="s-rv">0万</div><div class="ss">目標 60万</div></div>
-  </div>
-
-  <!-- ③ JARVIS -->
-  <div class="idc mb2" id="jarvis-brief">
-    <div class="idc-t" id="jarvis-msg">起動中...</div>
-    <div class="idc-s">J.A.R.V.I.S. · Logic Link COO · Kaiji Kikuchi</div>
-    <div style="display:flex;gap:1.1rem;margin-top:.55rem;flex-wrap:wrap">
-      <span class="ts" id="j-sleep"></span>
-      <span class="ts" id="j-rev"></span>
-      <span class="ts" id="j-lv"></span>
-    </div>
-  </div>
-
-  <!-- 出発バナー -->
-  <div id="dep-wrap"></div>
-
-  <!-- ④ 体調 -->
-  <div class="card mb2">
-    <div class="ct mb1">今日の体調</div>
-    <div class="mood-row">
-      <button class="mood-btn m-tired" onclick="setMood('tired')">😔 疲れた</button>
-      <button class="mood-btn m-normal" onclick="setMood('normal')">😐 普通</button>
-      <button class="mood-btn m-great" onclick="setMood('great')">😄 最高！</button>
-    </div>
-  </div>
-
-  <!-- ⑤ 今日のMIT（朝に記入） -->
+  <!-- MIT（最優先アクション） -->
   <div class="card mb2">
     <div class="ct mb2">⚡ 今日のMIT <span class="ts tc-m" style="text-transform:none;letter-spacing:0;font-weight:400">— 今日絶対やる3つ</span></div>
     <div class="mit-wrap">
@@ -388,7 +356,35 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
     <div id="win-c" style="display:none"></div>
   </div>
 
-  <!-- ⑥ スケジュール + 習慣チェック -->
+  <!-- JARVIS + 体調 -->
+  <div class="idc mb2" id="jarvis-brief">
+    <div class="idc-t" id="jarvis-msg">起動中...</div>
+    <div class="idc-s">J.A.R.V.I.S. · Logic Link COO · Kaiji Kikuchi</div>
+    <div style="display:flex;gap:1.1rem;margin-top:.55rem;flex-wrap:wrap">
+      <span class="ts" id="j-sleep"></span>
+      <span class="ts" id="j-rev"></span>
+      <span class="ts" id="j-lv"></span>
+    </div>
+    <div class="mood-row" style="margin-top:.65rem;gap:.35rem">
+      <button class="mood-btn m-tired" onclick="setMood('tired')" style="font-size:.72rem;padding:.32rem">😔 疲れた</button>
+      <button class="mood-btn m-normal" onclick="setMood('normal')" style="font-size:.72rem;padding:.32rem">😐 普通</button>
+      <button class="mood-btn m-great" onclick="setMood('great')" style="font-size:.72rem;padding:.32rem">😄 最高！</button>
+    </div>
+  </div>
+
+  <!-- スタッツ -->
+  <div class="sr mb2">
+    <div class="sc"><div class="sl">😴 昨夜の睡眠</div><div class="sv" id="s-slp">--</div><div class="ss" id="s-slp-s">起床時間を入力</div></div>
+    <div class="sc"><div class="sl">今日のスコア</div><div class="sv tc-v" id="s-sc">0%</div><div class="ss" id="s-pts">0点</div></div>
+    <div class="sc"><div class="sl">🔥 ストリーク</div><div class="sv tc-a" id="s-st">0</div><div class="ss" id="streak-sub">日連続</div></div>
+    <div class="sc"><div class="sl">今月売上</div><div class="sv tc-g" id="s-rv">0万</div><div class="ss">目標 60万</div></div>
+  </div>
+  <span id="streak-disp" style="display:none"></span>
+
+  <!-- 出発バナー -->
+  <div id="dep-wrap"></div>
+
+  <!-- スケジュール + 習慣チェック -->
   <div class="cg">
     <div class="card">
       <div class="flex aic jb mb1"><span class="ct">スケジュール</span><span class="badge bg-v" id="day-badge"></span></div>
@@ -418,7 +414,7 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
     </div>
   </div>
 
-  <!-- ⑦ 作業時間 -->
+  <!-- 作業時間 -->
   <div class="card mt2">
     <div class="flex aic jb mb1">
       <span class="ct">作業時間</span>
@@ -428,22 +424,29 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
     <div class="flex jb aic ts tc-m"><span id="work-sum">0 セッション · 0分</span><span>目標: 4セッション（100分）</span></div>
   </div>
 
-  <!-- ─── 🌙 夜の記録 ─── -->
+  <!-- ─── 🌙 夜の記録（今日に完全統合） ─── -->
   <div class="evening-div" id="evening-sec">
     <span>🌙 夜の記録</span>
     <span class="ts tc-m" id="ev-date"></span>
   </div>
 
-  <!-- 勝ち条件 達成チェック（夜に押す） -->
+  <!-- MIT① 達成チェック -->
   <div class="card mb2" id="win-eve-c">
     <div class="ct mb2">今日の勝ち条件 — 達成チェック</div>
-    <div class="ts mb2" id="win-eve-txt" style="font-weight:600;color:var(--t)">（朝に勝ち条件を設定してください）</div>
+    <div class="ts mb2" id="win-eve-txt" style="font-weight:600;color:var(--t)">（MIT①を入力すると自動で設定されます）</div>
     <div class="flex aic gap1">
       <button class="btn bp bbl" id="win-btn" onclick="toggleWin()" style="flex:1">達成した！</button>
       <div class="ts tc-m" id="win-st"></div>
     </div>
   </div>
 
+  <!-- 明日のフォーカス -->
+  <div class="card mb2">
+    <div class="ct mb2">明日の最重要ブロック</div>
+    <div id="rv-focus"></div>
+  </div>
+
+  <!-- 今日の学び -->
   <div class="card mb2">
     <div class="ct mb2">今日の学び</div>
     <textarea id="ln-inp" placeholder="気づき・学び・気になったことをコピペ or 記入..." oninput="saveLn()"></textarea>
@@ -455,11 +458,13 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
     </div>
   </div>
 
+  <!-- BILINGO メモ -->
   <div class="card mb2">
     <div class="ct mb2">BILINGO / 帰国子女事業メモ</div>
     <textarea id="kk-inp" placeholder="アイデア・思いついたこと・気になること..." oninput="saveKK()" style="min-height:65px"></textarea>
   </div>
 
+  <!-- 就寝時間 -->
   <div class="card">
     <div class="ct mb2">🌙 就寝時間</div>
     <div class="flex gap1 mb1"><input type="time" id="in-slp" oninput="saveSleepDat()"><button class="btn bgh bsm" onclick="setNowTime('in-slp');saveSleepDat()">今</button></div>
@@ -567,24 +572,7 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
   <div class="card"><div class="hgw"><table class="hg" id="hgrid"></table></div></div>
 </div>
 
-<!-- REVIEW -->
-<div id="page-review" class="page">
-  <div class="ph"><h1>夜のレビュー</h1><p id="rv-sub"></p></div>
-  <div class="card mb2">
-    <div class="ct mb2">今日の勝ち条件 — 振り返り</div>
-    <div id="rv-win"></div>
-  </div>
-  <div class="card mb2">
-    <div class="ct mb2">明日の最重要ブロック</div>
-    <div id="rv-focus"></div>
-  </div>
-  <button class="btn bg-btn bbl mb2" onclick="saveRev()">レビュー完了 ✓</button>
-  <button class="btn bo bbl" id="ai-btn" onclick="runAI()">Claude に分析してもらう</button>
-  <div id="ai-box" class="ai-box hidden mt2">
-    <div class="ai-lbl"><span class="loader hidden" id="ai-ld"></span> Claude からの一言</div>
-    <div class="ai-txt" id="ai-txt"></div>
-  </div>
-</div>
+<div id="page-review" class="page" style="display:none!important"></div>
 
 <!-- GOALS -->
 <div id="page-goals" class="page">
@@ -680,8 +668,8 @@ body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),r
   <button class="bi active" data-p="today" onclick="nav('today')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>今日</button>
   <button class="bi" data-p="goals" onclick="nav('goals')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>目標</button>
   <button class="bi" data-p="weekly" onclick="nav('weekly')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>今週</button>
-  <button class="bi" data-p="review" onclick="navReview()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>夜</button>
   <button class="bi" data-p="ai" onclick="nav('ai')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>AI</button>
+  <button class="bi" data-p="settings" onclick="nav('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>設定</button>
 </div></nav>
 </div>
 
@@ -847,7 +835,7 @@ function nav(p){
   document.querySelectorAll('[data-p]').forEach(x=>x.classList.toggle('active',x.dataset.p===p));
   if(p==='monthly')renderGrid();
   if(p==='weekly'){renderWeekly();loadWRev();}
-  if(p==='review')renderRev();
+  if(p==='review'){nav('today');setTimeout(()=>document.getElementById('evening-sec')?.scrollIntoView({behavior:'smooth'}),80);}// legacy
   if(p==='settings')renderSettings();
   if(p==='ai')initAIChat();
 }
@@ -860,6 +848,20 @@ function navReview(){
   },80);
 }
 // ── Weekly Banner ──
+function renderTomorrowFocus(){
+  const ni=(DI+1)%7;const nk=DAYS[ni];const nds=SCHED[nk];
+  const foc=document.getElementById('rv-focus');
+  if(!foc)return;
+  const d=ld('td_'+TK,{});const saved=d.focus;
+  if(nds){
+    foc.innerHTML=nds.ev.filter(e=>e.c!=='sleep'&&e.c!=='transport'&&e.c!=='review')
+      .map(e=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:.5rem .65rem;background:${saved===e.n?'var(--vd)':'var(--card2)'};border:1px solid ${saved===e.n?'var(--v)':'var(--b)'};border-radius:8px;margin-bottom:.35rem;cursor:pointer" onclick="setFocus('${e.n.replace(/'/g,"\\'")}')">
+        <div><div style="font-size:.78rem;font-weight:600">${e.n}</div><div style="font-size:.62rem;color:var(--t3)">${e.t}</div></div>
+        ${saved===e.n?'<span class="badge bg-v">選択中</span>':''}
+      </div>`).join('');
+    if(DK==='thu')foc.innerHTML+='<div class="badge bg-a" style="display:block;padding:.4rem;margin-top:.35rem">Never Miss Twice: 明日はLL作業1タスクで勝ち</div>';
+  }else{foc.innerHTML='<div class="ts tc-m">明日のスケジュールなし</div>';}
+}
 function updWkBanner(){
   const g=ld('jarvis_goals',{});
   const theme=g['gl-wk-'+WK]||'';
@@ -939,6 +941,7 @@ function initToday(){
   updWkBanner();
   updWorkSum();
   updSleepStat();
+  renderTomorrowFocus();
   updSleepPreview();
   updJarvis();
 }
@@ -1223,6 +1226,17 @@ function updStreak(){
   const st=ld('streak',{});
   const n=st.n||0;
   document.getElementById('s-st').textContent=n;
+  // 今月の達成日数
+  const yr=NOW.getFullYear(),mo=NOW.getMonth();
+  const dim=new Date(yr,mo+1,0).getDate();
+  let ciDays=0;
+  for(let d=1;d<=NOW.getDate();d++){
+    const key=dk(new Date(yr,mo,d));
+    const dd=ld('td_'+key,{});
+    if(dd.checkedIn)ciDays++;
+  }
+  const sub=document.getElementById('streak-sub');
+  if(sub)sub.textContent=`日連続 · 今月${ciDays}日達成`;
   const sd=document.getElementById('streak-disp');
   if(sd)sd.textContent=n>=3?`${n}日連続 🔥`:`${n}日連続`;
 }
