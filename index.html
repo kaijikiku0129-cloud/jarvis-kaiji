@@ -264,6 +264,25 @@ textarea{resize:vertical;min-height:58px}
   .ph h1{font-size:1.05rem}
 }
 @media(max-width:400px){.wk-cols{grid-template-columns:repeat(3,1fr)}}
+/* ── Weekly Banner ── */
+.wk-banner{background:linear-gradient(135deg,rgba(99,102,241,.18),rgba(6,182,212,.12));border:1px solid rgba(129,140,248,.35);border-radius:14px;padding:1.1rem 1.3rem;margin-bottom:1.1rem;position:relative;overflow:hidden}
+.wk-banner::before{content:'';position:absolute;top:-35%;right:-6%;width:130px;height:130px;background:radial-gradient(circle,rgba(129,140,248,.3),transparent 70%);pointer-events:none}
+.wk-banner-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--v2);margin-bottom:.4rem;opacity:.85}
+.wk-banner-text{font-size:1.18rem;font-weight:800;line-height:1.4;color:var(--t);margin-bottom:.38rem;position:relative;z-index:1}
+.wk-banner-sub{font-size:.68rem;color:var(--t2);line-height:1.5}
+.wk-banner-days{display:inline-flex;align-items:center;gap:.25rem;background:rgba(129,140,248,.2);border-radius:5px;padding:.1rem .45rem;font-size:.65rem;font-weight:700;color:var(--v2);margin-right:.5rem}
+body.light .wk-banner{background:linear-gradient(135deg,rgba(59,130,246,.1),rgba(8,145,178,.06));border-color:rgba(59,130,246,.28)}
+/* ── Evening Divider ── */
+.evening-div{display:flex;align-items:center;justify-content:space-between;margin:1.5rem 0 .875rem;padding:.6rem 1rem;background:linear-gradient(135deg,rgba(22,32,50,.8),rgba(15,25,41,.6));border:1px solid rgba(99,102,241,.22);border-radius:10px;font-size:.82rem;font-weight:700;color:var(--v2)}
+body.light .evening-div{background:linear-gradient(135deg,rgba(59,130,246,.07),rgba(8,145,178,.04));border-color:rgba(59,130,246,.2);color:var(--v)}
+/* ── AI Chat ── */
+.ai-chat-wrap{display:flex;flex-direction:column;gap:.65rem;min-height:320px;max-height:58vh;overflow-y:auto;padding:.5rem 0;margin-bottom:.875rem}
+.ai-bubble{max-width:88%;padding:.6rem .9rem;border-radius:12px;font-size:.82rem;line-height:1.65;white-space:pre-wrap;word-break:break-word}
+.ai-bubble.ai{background:var(--card);border:1px solid var(--b);border-radius:4px 12px 12px 12px;align-self:flex-start}
+.ai-bubble.user{background:var(--v);color:#fff;border-radius:12px 4px 12px 12px;align-self:flex-end}
+.ai-bubble.ai.typing{opacity:.5}
+.ai-chat-inp-wrap{display:flex;gap:.45rem;align-items:flex-end}
+.ai-chat-inp-wrap textarea{flex:1;resize:none;min-height:44px;max-height:120px}
 /* ── Goals Tree ── */
 .gtl{border-radius:10px;padding:.75rem 1rem;margin-bottom:.45rem;border-left:3px solid var(--v);background:var(--card);border-top:1px solid var(--b);border-right:1px solid var(--b);border-bottom:1px solid var(--b);transition:background .3s,border-color .3s}
 .gtl-0{border-left-color:var(--pu)}.gtl-1{border-left-color:var(--v2)}.gtl-2{border-left-color:var(--cy)}.gtl-3{border-left-color:var(--g)}.gtl-4{border-left-color:var(--a)}.gtl-5{border-left-color:var(--pk)}.gtl-6{border-left-color:var(--r);background:linear-gradient(135deg,rgba(239,68,68,.05),rgba(245,158,11,.03))}
@@ -290,14 +309,12 @@ textarea{resize:vertical;min-height:58px}
   <div class="sb-th"><div class="th-dot" id="th-dot"></div><span id="th-lbl"></span></div>
   <div class="ng">
     <div class="ngl">メイン</div>
-    <div class="ni active" data-p="today" onclick="nav('today')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>今日</div>
     <div class="ni" data-p="goals" onclick="nav('goals')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>目標ツリー</div>
+    <div class="ni active" data-p="today" onclick="nav('today')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>今日</div>
+    <div class="ni" data-p="ai" onclick="nav('ai')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 8v4l3 3"/><circle cx="18" cy="5" r="3" fill="var(--v)" stroke="none"/></svg>AI メンター</div>
+    <div class="ni" data-p="review" onclick="navReview()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>夜のレビュー</div>
     <div class="ni" data-p="weekly" onclick="nav('weekly')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>今週</div>
     <div class="ni" data-p="monthly" onclick="nav('monthly')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>今月</div>
-  </div>
-  <div class="ng">
-    <div class="ngl">記録</div>
-    <div class="ni" data-p="review" onclick="nav('review')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>夜のレビュー</div>
     <div class="ni" data-p="settings" onclick="nav('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>設定</div>
   </div>
   <div class="sb-ft">
@@ -318,33 +335,38 @@ textarea{resize:vertical;min-height:58px}
 
 <!-- TODAY -->
 <div id="page-today" class="page active">
-  <div class="ph"><h1 id="t-h"></h1><p id="t-sub"></p></div>
+  <div class="ph" style="margin-bottom:.75rem"><h1 id="t-h"></h1><p id="t-sub"></p></div>
+
+  <!-- ① 今週テーマバナー -->
+  <div class="wk-banner">
+    <div class="wk-banner-label">📋 今週のテーマ</div>
+    <div class="wk-banner-text" id="wk-theme-disp">→ 目標ツリーで今週のテーマを設定してください</div>
+    <div class="wk-banner-sub"><span class="wk-banner-days">残り<span id="wk-days-left">?</span>日</span><span id="wk-goal-year" class="tc-m">25歳：年収1500-2000万 + 自分の城</span></div>
+  </div>
+
+  <!-- ② スタッツ -->
+  <div class="sr mb2">
+    <div class="sc"><div class="sl">😴 昨夜の睡眠</div><div class="sv" id="s-slp">--</div><div class="ss" id="s-slp-s">起床時間を入力</div></div>
+    <div class="sc"><div class="sl">今日のスコア</div><div class="sv tc-v" id="s-sc">0%</div><div class="ss" id="s-pts">0点</div></div>
+    <div class="sc"><div class="sl">🔥 ストリーク</div><div class="sv tc-a" id="s-st">0</div><div class="ss">日連続 <span id="streak-disp"></span></div></div>
+    <div class="sc"><div class="sl">今月売上</div><div class="sv tc-g" id="s-rv">0万</div><div class="ss">目標 60万</div></div>
+  </div>
+
+  <!-- ③ JARVIS -->
   <div class="idc mb2" id="jarvis-brief">
     <div class="idc-t" id="jarvis-msg">起動中...</div>
-    <div class="idc-s">J.A.R.V.I.S. · Logic Link COO · Kaiji Kikuchi · <span id="streak-disp"></span></div>
-    <div style="display:flex;gap:1.1rem;margin-top:.55rem;flex-wrap:wrap" id="jarvis-stats">
+    <div class="idc-s">J.A.R.V.I.S. · Logic Link COO · Kaiji Kikuchi</div>
+    <div style="display:flex;gap:1.1rem;margin-top:.55rem;flex-wrap:wrap">
       <span class="ts" id="j-sleep"></span>
       <span class="ts" id="j-rev"></span>
       <span class="ts" id="j-lv"></span>
     </div>
   </div>
+
+  <!-- 出発バナー -->
   <div id="dep-wrap"></div>
-  <div class="sr mb2">
-    <div class="sc"><div class="sl">😴 昨夜の睡眠</div><div class="sv" id="s-slp">--</div><div class="ss" id="s-slp-s">起床時間を入力</div></div>
-    <div class="sc"><div class="sl">今日のスコア</div><div class="sv tc-v" id="s-sc">0%</div><div class="ss" id="s-pts">0点</div></div>
-    <div class="sc"><div class="sl">ストリーク</div><div class="sv tc-a" id="s-st">0</div><div class="ss">日連続</div></div>
-    <div class="sc"><div class="sl">今月売上</div><div class="sv tc-g" id="s-rv">0万</div><div class="ss">目標 60万</div></div>
-  </div>
-  <!-- Win condition -->
-  <div class="win-c mb2" id="win-c">
-    <div class="ct mb1">今日の勝ち条件 <span class="ts tc-m">— これ1個やれば今日は勝ち</span></div>
-    <input class="win-inp" id="win-inp" type="text" placeholder="例：LL作業2時間こなす" oninput="saveWin()">
-    <div class="flex aic gap1 mt1">
-      <button class="btn bp bsm" id="win-btn" onclick="toggleWin()">達成した！</button>
-      <div class="ts tc-m" id="win-st"></div>
-    </div>
-  </div>
-  <!-- Mood -->
+
+  <!-- ④ 体調 -->
   <div class="card mb2">
     <div class="ct mb1">今日の体調</div>
     <div class="mood-row">
@@ -353,7 +375,20 @@ textarea{resize:vertical;min-height:58px}
       <button class="mood-btn m-great" onclick="setMood('great')">😄 最高！</button>
     </div>
   </div>
-  <!-- Main grid -->
+
+  <!-- ⑤ 今日のMIT（朝に記入） -->
+  <div class="card mb2">
+    <div class="ct mb2">⚡ 今日のMIT <span class="ts tc-m" style="text-transform:none;letter-spacing:0;font-weight:400">— 今日絶対やる3つ</span></div>
+    <div class="mit-wrap">
+      <div class="mit-item"><span class="mit-num" style="color:var(--g)">①</span><input type="text" class="mit-inp" id="mit-1" placeholder="今日の最重要タスク（= 今日の勝ち条件）..." oninput="saveMIT()" style="border-color:rgba(16,185,129,.3)"></div>
+      <div class="mit-item"><span class="mit-num">②</span><input type="text" class="mit-inp" id="mit-2" placeholder="次に重要なタスク..." oninput="saveMIT()"></div>
+      <div class="mit-item"><span class="mit-num">③</span><input type="text" class="mit-inp" id="mit-3" placeholder="あると嬉しいタスク..." oninput="saveMIT()"></div>
+    </div>
+    <input type="hidden" id="win-inp">
+    <div id="win-c" style="display:none"></div>
+  </div>
+
+  <!-- ⑥ スケジュール + 習慣チェック -->
   <div class="cg">
     <div class="card">
       <div class="flex aic jb mb1"><span class="ct">スケジュール</span><span class="badge bg-v" id="day-badge"></span></div>
@@ -373,7 +408,7 @@ textarea{resize:vertical;min-height:58px}
     </div>
     <div>
       <div class="card mb2">
-        <div class="flex aic jb mb2"><span class="ct">習慣チェック</span><button class="btn bgh bsm" onclick="openPomo()">▶ 作業開始</button></div>
+        <div class="ct mb2">習慣チェック</div>
         <div id="hab-list"></div>
       </div>
       <button class="btn bg-btn bbl" onclick="doCheckIn()">✓ チェックイン完了</button>
@@ -382,16 +417,51 @@ textarea{resize:vertical;min-height:58px}
       </div>
     </div>
   </div>
-  <!-- Work summary -->
+
+  <!-- ⑦ 作業時間 -->
   <div class="card mt2">
-    <div class="flex aic jb mb1"><span class="ct">今日の稼働</span><span class="ts tc-m" id="work-sum">0 セッション · 0分</span></div>
-    <div class="pb"><div class="pf pf-v" id="work-pb" style="width:0%"></div></div>
-    <div class="ts tc-m mt1">目標: 4セッション（100分）</div>
+    <div class="flex aic jb mb1">
+      <span class="ct">作業時間</span>
+      <button class="btn bp bsm" onclick="openPomo()">▶ ポモドーロ開始</button>
+    </div>
+    <div class="pb mb1"><div class="pf pf-v" id="work-pb" style="width:0%"></div></div>
+    <div class="flex jb aic ts tc-m"><span id="work-sum">0 セッション · 0分</span><span>目標: 4セッション（100分）</span></div>
   </div>
-  <!-- 夜の記録 -->
-  <div class="card mt2">
-    <div class="ct mb2">🌙 夜の記録</div>
-    <div class="sec-t" style="margin-bottom:.22rem">今夜の就寝時間</div>
+
+  <!-- ─── 🌙 夜の記録 ─── -->
+  <div class="evening-div" id="evening-sec">
+    <span>🌙 夜の記録</span>
+    <span class="ts tc-m" id="ev-date"></span>
+  </div>
+
+  <!-- 勝ち条件 達成チェック（夜に押す） -->
+  <div class="card mb2" id="win-eve-c">
+    <div class="ct mb2">今日の勝ち条件 — 達成チェック</div>
+    <div class="ts mb2" id="win-eve-txt" style="font-weight:600;color:var(--t)">（朝に勝ち条件を設定してください）</div>
+    <div class="flex aic gap1">
+      <button class="btn bp bbl" id="win-btn" onclick="toggleWin()" style="flex:1">達成した！</button>
+      <div class="ts tc-m" id="win-st"></div>
+    </div>
+  </div>
+
+  <div class="card mb2">
+    <div class="ct mb2">今日の学び</div>
+    <textarea id="ln-inp" placeholder="気づき・学び・気になったことをコピペ or 記入..." oninput="saveLn()"></textarea>
+    <div class="flex gap1 mt1" id="tag-btns">
+      <button class="btn bgh bsm" id="tag-ll" onclick="toggleTag('ll')">LL仕事</button>
+      <button class="btn bgh bsm" id="tag-uni" onclick="toggleTag('uni')">大学</button>
+      <button class="btn bgh bsm" id="tag-self" onclick="toggleTag('self')">自己理解</button>
+      <button class="btn bgh bsm" id="tag-kk" onclick="toggleTag('kk')">帰国事業</button>
+    </div>
+  </div>
+
+  <div class="card mb2">
+    <div class="ct mb2">BILINGO / 帰国子女事業メモ</div>
+    <textarea id="kk-inp" placeholder="アイデア・思いついたこと・気になること..." oninput="saveKK()" style="min-height:65px"></textarea>
+  </div>
+
+  <div class="card">
+    <div class="ct mb2">🌙 就寝時間</div>
     <div class="flex gap1 mb1"><input type="time" id="in-slp" oninput="saveSleepDat()"><button class="btn bgh bsm" onclick="setNowTime('in-slp');saveSleepDat()">今</button></div>
     <div id="sleep-preview" class="ts tc-m mb1"></div>
     <div id="sleep-warn" class="hidden mt2" style="background:var(--rd);border:1px solid var(--r);border-radius:9px;padding:.65rem .9rem">
@@ -500,47 +570,19 @@ textarea{resize:vertical;min-height:58px}
 <!-- REVIEW -->
 <div id="page-review" class="page">
   <div class="ph"><h1>夜のレビュー</h1><p id="rv-sub"></p></div>
-  <div class="cg">
-    <div>
-      <div class="card mb2">
-        <div class="ct mb2">今日の勝ち条件 — 振り返り</div>
-        <div id="rv-win"></div>
-      </div>
-      <div class="card mb2">
-        <div class="ct mb2">ブロック振り返り</div>
-        <div id="rv-blk"></div>
-      </div>
-      <div class="card">
-        <div class="ct mb2">習慣スコア確認</div>
-        <div id="rv-hab"></div>
-      </div>
-    </div>
-    <div>
-      <div class="card mb2">
-        <div class="ct mb2">今日の学び</div>
-        <textarea id="ln-inp" placeholder="気づき・学び・気になったことをコピペ or 記入..." oninput="saveLn()"></textarea>
-        <div class="flex gap1 mt1" id="tag-btns">
-          <button class="btn bgh bsm" id="tag-ll" onclick="toggleTag('ll')">LL仕事</button>
-          <button class="btn bgh bsm" id="tag-uni" onclick="toggleTag('uni')">大学</button>
-          <button class="btn bgh bsm" id="tag-self" onclick="toggleTag('self')">自己理解</button>
-          <button class="btn bgh bsm" id="tag-kk" onclick="toggleTag('kk')">帰国事業</button>
-        </div>
-      </div>
-      <div class="card mb2">
-        <div class="ct mb2">明日の最重要ブロック</div>
-        <div id="rv-focus"></div>
-      </div>
-      <div class="card mb2">
-        <div class="ct mb2">帰国子女事業メモ</div>
-        <textarea id="kk-inp" placeholder="アイデア・思いついたこと・気になること..." oninput="saveKK()" style="min-height:65px"></textarea>
-      </div>
-      <button class="btn bg-btn bbl mb2" onclick="saveRev()">レビュー完了</button>
-      <button class="btn bo bbl" id="ai-btn" onclick="runAI()">Claude に分析してもらう</button>
-      <div id="ai-box" class="ai-box hidden mt2">
-        <div class="ai-lbl"><span class="loader hidden" id="ai-ld"></span> Claude からの一言</div>
-        <div class="ai-txt" id="ai-txt"></div>
-      </div>
-    </div>
+  <div class="card mb2">
+    <div class="ct mb2">今日の勝ち条件 — 振り返り</div>
+    <div id="rv-win"></div>
+  </div>
+  <div class="card mb2">
+    <div class="ct mb2">明日の最重要ブロック</div>
+    <div id="rv-focus"></div>
+  </div>
+  <button class="btn bg-btn bbl mb2" onclick="saveRev()">レビュー完了 ✓</button>
+  <button class="btn bo bbl" id="ai-btn" onclick="runAI()">Claude に分析してもらう</button>
+  <div id="ai-box" class="ai-box hidden mt2">
+    <div class="ai-lbl"><span class="loader hidden" id="ai-ld"></span> Claude からの一言</div>
+    <div class="ai-txt" id="ai-txt"></div>
   </div>
 </div>
 
@@ -588,13 +630,21 @@ textarea{resize:vertical;min-height:58px}
   </div>
 
   <div class="gtl gtl-6">
-    <div class="gtl-h" style="color:var(--r)">⚡ 今日のMIT</div>
-    <div class="mit-wrap">
-      <div class="mit-item"><span class="mit-num">①</span><input type="text" class="mit-inp" id="mit-1" placeholder="今日の最重要タスク..." oninput="saveMIT()"></div>
-      <div class="mit-item"><span class="mit-num">②</span><input type="text" class="mit-inp" id="mit-2" placeholder="次に重要なタスク..." oninput="saveMIT()"></div>
-      <div class="mit-item"><span class="mit-num">③</span><input type="text" class="mit-inp" id="mit-3" placeholder="あると嬉しいタスク..." oninput="saveMIT()"></div>
-    </div>
+    <div class="gtl-h" style="color:var(--r)">⚡ 今日のMIT <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--t3)">（「今日」ページで入力）</span></div>
+    <div id="mit-disp" class="ts tc-m mt1" style="line-height:1.8">今日ページでMITを入力してください</div>
+    <button class="btn bp bsm mt2" onclick="nav('today')">→ 今日ページへ</button>
   </div>
+</div>
+
+<!-- AI CHAT -->
+<div id="page-ai" class="page">
+  <div class="ph" style="margin-bottom:.75rem"><h1>AI メンター</h1><p>JARVIS × Kaiji — 本音で話せる場所</p></div>
+  <div class="ai-chat-wrap" id="ai-chat-wrap"></div>
+  <div class="ai-chat-inp-wrap">
+    <textarea id="ai-chat-inp" placeholder="今日の相談、悩み、気づき、相談なんでも..." onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAIChat();}"></textarea>
+    <button class="btn bp" id="ai-send-btn" onclick="sendAIChat()" style="padding:.5rem .85rem;height:44px">送信</button>
+  </div>
+  <button class="btn bgh bbl mt2" onclick="clearAIChat()" style="font-size:.72rem">会話をリセット</button>
 </div>
 
 <!-- SETTINGS -->
@@ -627,9 +677,30 @@ textarea{resize:vertical;min-height:58px}
   <button class="bi active" data-p="today" onclick="nav('today')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>今日</button>
   <button class="bi" data-p="goals" onclick="nav('goals')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>目標</button>
   <button class="bi" data-p="weekly" onclick="nav('weekly')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>今週</button>
-  <button class="bi" data-p="review" onclick="nav('review')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>レビュー</button>
-  <button class="bi" data-p="settings" onclick="nav('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>設定</button>
+  <button class="bi" data-p="review" onclick="navReview()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>夜</button>
+  <button class="bi" data-p="ai" onclick="nav('ai')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>AI</button>
 </div></nav>
+</div>
+
+<!-- DAY EDIT MODAL -->
+<div id="dayedit-modal" class="pomo-modal hidden">
+  <div class="pomo-inner" style="max-width:340px">
+    <h3 id="dayedit-title" style="font-size:.9rem;margin-bottom:1rem">日別編集</h3>
+    <div class="sec-t mb1">起床時間</div>
+    <div class="flex gap1 mb2"><input type="time" id="de-wak" style="flex:1"></div>
+    <div class="sec-t mb1">就寝時間</div>
+    <div class="flex gap1 mb2"><input type="time" id="de-slp" style="flex:1"></div>
+    <div class="sec-t mb1">今日の学び</div>
+    <textarea id="de-ln" placeholder="学び・気づき..." style="margin-bottom:.875rem;min-height:55px"></textarea>
+    <div class="sec-t mb1">BILINGO / 帰国子女事業メモ</div>
+    <textarea id="de-kk" placeholder="アイデア・メモ..." style="margin-bottom:.875rem;min-height:45px"></textarea>
+    <div class="sec-t mb1">稼働時間（分）</div>
+    <input type="number" id="de-work" placeholder="例: 120" style="margin-bottom:.875rem">
+    <div class="pomo-btns">
+      <button class="btn bp" onclick="saveDayEdit()">保存</button>
+      <button class="btn bgh" onclick="document.getElementById('dayedit-modal').classList.add('hidden')">閉じる</button>
+    </div>
+  </div>
 </div>
 
 <!-- POMODORO MODAL -->
@@ -745,7 +816,7 @@ const SCHED={
 // ── Storage ──
 function ld(k,d){try{const v=localStorage.getItem(k);return v!=null?JSON.parse(v):d}catch{return d}}
 function sv(k,v){localStorage.setItem(k,JSON.stringify(v))}
-function dk(d){return d.toISOString().slice(0,10)}
+function dk(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
 function mk(d){return d.getFullYear()+'-'+(d.getMonth()+1)}
 
 const NOW=new Date();
@@ -772,9 +843,33 @@ function nav(p){
   document.getElementById('page-'+p).classList.add('active');
   document.querySelectorAll('[data-p]').forEach(x=>x.classList.toggle('active',x.dataset.p===p));
   if(p==='monthly')renderGrid();
-  if(p==='weekly')renderWeekly();
+  if(p==='weekly'){renderWeekly();loadWRev();}
   if(p==='review')renderRev();
   if(p==='settings')renderSettings();
+  if(p==='ai')initAIChat();
+}
+function navReview(){
+  nav('today');
+  document.querySelectorAll('[data-p]').forEach(x=>x.classList.toggle('active',x.dataset.p==='review'));
+  setTimeout(()=>{
+    const el=document.getElementById('evening-sec');
+    if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+  },80);
+}
+// ── Weekly Banner ──
+function updWkBanner(){
+  const g=ld('jarvis_goals',{});
+  const theme=g['gl-wk-'+WK]||'';
+  const goalYr=g['gl-yr']||g['gl-25']||'';
+  const disp=document.getElementById('wk-theme-disp');
+  if(disp)disp.textContent=theme||'→ 目標ツリーで今週のテーマを設定してください';
+  const today=new Date().getDay();
+  const daysLeft=today===0?0:7-today;
+  const dl=document.getElementById('wk-days-left');if(dl)dl.textContent=daysLeft;
+  const sub=document.getElementById('wk-goal-year');
+  if(sub)sub.textContent=goalYr||'25歳：年収1500-2000万 + 自分の城';
+  const ev=document.getElementById('ev-date');
+  if(ev)ev.textContent=fmtD(NOW);
 }
 
 // ── Helpers ──
@@ -838,6 +933,7 @@ function initToday(){
   if(DK==='thu'||DK==='fri')document.getElementById('nmt-bar').classList.remove('hidden');
   setInterval(chkDepart,60000);chkDepart();
   setInterval(updDepCount,30000);updDepCount();
+  updWkBanner();
   updWorkSum();
   updSleepStat();
   updSleepPreview();
@@ -983,7 +1079,8 @@ function updSleepStat(){
   const txt=h>0?(m>0?h+'h '+m+'m':h+'h'):(m+'m');
   const col=dur>=360?'var(--g)':dur>=300?'var(--a)':'var(--r)';
   if(el){el.textContent=txt;el.style.color=col;}
-  if(es)es.textContent=slpT+' 就寝 → '+wakT+' 起床';
+  const comment=dur>=420?'コンディション良好。今日は攻めていい。':dur>=360?'標準。集中力は維持できる。':dur>=300?'集中力落ちやすい。MITを1つに絞ろう。':'睡眠不足。最低ラインだけやり切ろう。';
+  if(es)es.textContent=slpT+'就寝→'+wakT+'起床 · '+comment;
   // Show warning if <6h
   const warn=document.getElementById('sleep-warn');
   const warnTxt=document.getElementById('slp-dur-warn');
@@ -1060,23 +1157,39 @@ function saveWin(){
   d.win=document.getElementById('win-inp').value;
   sv('td_'+TK,d);
   const c=document.getElementById('win-c');
-  if(c)c.className='win-c mb2'+(d.win?' declared':'');
+  if(c)c.className='win-c'+(d.win?' declared':'');
+  // 夜カードに反映
+  const et=document.getElementById('win-eve-txt');
+  if(et)et.textContent=d.win||'（朝に勝ち条件を設定してください）';
+}
+function updWinEve(){
+  const d=ld('td_'+TK,{});
+  const et=document.getElementById('win-eve-txt');
+  if(et)et.textContent=d.win||'（朝に勝ち条件を設定してください）';
+  const btn=document.getElementById('win-btn');
+  const st=document.getElementById('win-st');
+  const ec=document.getElementById('win-eve-c');
+  if(d.winDone){
+    if(btn)btn.textContent='達成済み ✓';
+    if(st)st.textContent='達成！+100 XP';
+    if(ec)ec.style.borderColor='var(--g)';
+  }
 }
 function toggleWin(){
   const d=ld('td_'+TK,{});
   d.winDone=!d.winDone;sv('td_'+TK,d);
   const btn=document.getElementById('win-btn');
   const st=document.getElementById('win-st');
-  const c=document.getElementById('win-c');
+  const ec=document.getElementById('win-eve-c');
   if(d.winDone){
     if(btn)btn.textContent='達成済み ✓';
-    if(st)st.textContent='＋100 XP！';
-    if(c)c.className='win-c mb2 achieved';
+    if(st)st.textContent='達成！+100 XP';
+    if(ec)ec.style.borderColor='var(--g)';
     addXP(100);alert2('勝ち条件達成！+100 XP');
   }else{
     if(btn)btn.textContent='達成した！';
     if(st)st.textContent='';
-    if(c)c.className='win-c mb2 declared';
+    if(ec)ec.style.borderColor='';
   }
 }
 
@@ -1214,6 +1327,7 @@ function renderWeekly(){
     if((habs.ex??0)>=1)exDays++;
     totScore+=tot;totMax+=max;
     const sess=ld('pomo_'+key,[]);pomoMin+=sess.reduce((a,b)=>a+b.min,0);
+    const td2=ld('td_'+key,{});if(td2.workMin)pomoMin+=td2.workMin;
     if(d.ln)learns.push({date:`${date.getMonth()+1}/${date.getDate()}(${dlb[i]})`,txt:d.ln,tags:d.tags||[]});
     const col=pct>=80?'var(--g)':pct>=50?'var(--a)':'var(--b2)';
     return`<div class="card" style="${isTod?'border-color:var(--v)':''}">
@@ -1284,8 +1398,8 @@ function renderGrid(){
   let th='<thead><tr><th class="rh">習慣</th>';
   for(let d=1;d<=dim;d++){
     const date=new Date(yr,mo,d);const dow=date.getDay();
-    const we=dow===0||dow===6;
-    th+=`<th style="${we?'color:var(--pk)':''}">${d}<br><span style="font-size:.55rem">${DJP[dow]}</span></th>`;
+    const we=dow===0||dow===6;const key2=dk(date);
+    th+=`<th style="${we?'color:var(--pk)':''}cursor:pointer" onclick="openDayEdit('${key2}')" title="タップして編集">${d}<br><span style="font-size:.55rem">${DJP[dow]}</span></th>`;
   }
   th+='<th>%</th></thead>';
 
@@ -1304,7 +1418,7 @@ function renderGrid(){
       if(st!=='exclude')totals[d-1]+=sc;
       if(st!=='exclude')row+=sc;
       const cls=st==='exclude'?'fut gc':isFut?'gc fut':'gc s'+sc;
-      const icon=st==='exclude'?'—':isFut?'·':sc===0?'□':sc===1?'△':'✓';
+      const icon=st==='exclude'?'—':isFut?'·':sc===0?'✕':sc===1?'△':'✓';
       const clk=isFut||st==='exclude'?'':` onclick="cycGrid('${key}','${h.id}')"`;
       const isBonus=st==='bonus';
       tb+=`<td><div class="gc s${sc}${isFut?' fut':''}${isBonus?' bn':''}"${clk}>${icon}</div></td>`;
@@ -1534,6 +1648,154 @@ function alert2(msg){
   document.body.appendChild(el);_at=setTimeout(()=>el.remove(),3500);
 }
 
+// ── Day Edit (past days) ──
+let _deKey='';
+function openDayEdit(dateKey){
+  _deKey=dateKey;
+  const d=ld('td_'+dateKey,{});
+  const parts=dateKey.split('-');
+  const dt=new Date(parts[0],parts[1]-1,parts[2]);
+  document.getElementById('dayedit-title').textContent=`${dt.getMonth()+1}/${dt.getDate()}（${DJP[dt.getDay()]}）の記録を編集`;
+  const w=document.getElementById('de-wak');if(w)w.value=d.wak||'';
+  const s=document.getElementById('de-slp');if(s)s.value=d.slp||'';
+  const ln=document.getElementById('de-ln');if(ln)ln.value=d.ln||'';
+  const kk=document.getElementById('de-kk');if(kk)kk.value=d.kk||'';
+  const wm=document.getElementById('de-work');if(wm)wm.value=d.workMin||'';
+  document.getElementById('dayedit-modal').classList.remove('hidden');
+}
+function saveDayEdit(){
+  const d=ld('td_'+_deKey,{});
+  const w=document.getElementById('de-wak').value;
+  const s=document.getElementById('de-slp').value;
+  const ln=document.getElementById('de-ln').value;
+  const kk=document.getElementById('de-kk').value;
+  const wm=parseInt(document.getElementById('de-work').value)||0;
+  if(w)d.wak=w;if(s)d.slp=s;if(ln)d.ln=ln;if(kk)d.kk=kk;if(wm>0)d.workMin=wm;
+  sv('td_'+_deKey,d);
+  document.getElementById('dayedit-modal').classList.add('hidden');
+  renderGrid();
+  alert2('保存しました');
+}
+// ── AI Chat ──
+const JARVIS_SYSTEM=`あなたはKaiji Kikuchi（菊地海志、22歳）専属のAIメンターです。以下を常に文脈として持ってください。
+
+# Kaijiのプロフィール
+- 22歳、Logic Link COO候補、マイパレ営業部、中央大学国際経営学部3年（復学）
+- 帰国子女：生後〜9歳まで上海・香港・オーストラリア等40カ国を経験
+- 9歳で日本帰国後、言語・文化の壁でいじめを経験。これがBILINGOの原点
+
+# Kaijiの歴史（必ず文脈として持つ）
+- SFCを8回受験・全て不合格 → 「結果でしか認められない」という信念が染み付いた。しかしその執念は本物の強みだ
+- Loohcsで200人以上の高校生の受験を2年間伴走し、2年目で校舎統括
+- 大学2年次より教育事業2社のボードメンバー
+- 現在Phase3：「正解より納得」「仮面より本音」へシフト中
+- 「人は変わらず、景色を変えて」が人生哲学
+
+# Kaijiの目標
+- 25歳：年収1500-2000万 + 自分の城（BILINGO立ち上げ済み）
+- 30歳：LL役員 + BILINGO成長 + 年収2000-3000万
+- 40歳：息子の友達とサーフィン後、帰ってきて飯食いながら資本主義と人生を語れるシェルパ型パパ。諦めない強さと守る暖かさを兼ね備えた人間
+
+# Kaijiの事業
+- Logic Link：小論文・総合型選抜特化の教育塾。COO候補として現場統括・教務・マーケを担う
+- BILINGO：帰国子女向け教育事業。LL社内事業からスピンアウト予定。9歳で困った自分へのアンサー
+
+# Kaijiの動機構造（最重要）
+1. 鼓舞型：固有の実績（SFC8回・9歳帰国・Loohcs校舎統括など）を引用されると動ける
+2. 将来モテ想像型：「この行動を続けたら1年後どう見られるか」の具体描写が最大の燃料
+3. 承認欲求が根底：でも今は「影響力→本音」へシフト中。影響力ではなく納得軸でフィードバックする
+
+# KaijiのWill
+- 思い出に残る存在でありたい
+- 本音で泣ける場所を作れる人でいたい
+- 「大丈夫」って言ってる人の「本当はしんどい」に気づける人でいたい
+- 実現したい社会：本音を許容できる教育の場をつくる
+
+# 返答ルール
+- 基本は短く（3〜5行）。学びや洞察になる時は長くてOK
+- 説教しない。事実と問いかけで構成する
+- SFC8回・9歳帰国などKaiji固有の事実を引用して鼓舞する（「頑張れ」ではなく固有の実績を使う）
+- 「将来かっこいい自分が周囲からどう見られているか」を具体的に描写する
+- 「すごく見せたい」「影響力を出したい」パターンを検知したら「本音は何？」と問い返す
+- BILINGOを「9歳の自分へのアンサー」として接続する
+- 敬語なし、友人・メンターとして話す（「〜だよ」「〜じゃないか」スタイル）`;
+
+function buildAIContext(){
+  const td=ld('td_'+TK,{});
+  const yest=new Date(NOW);yest.setDate(yest.getDate()-1);
+  const yd=ld('td_'+dk(yest),{});
+  const g=ld('jarvis_goals',{});
+  const rev=ld('rev_'+mk(NOW),0);
+  let sleepTxt='未記録';
+  if(yd.slp&&td.wak){const dur=(t2m(td.wak)-t2m(yd.slp)+1440)%1440;sleepTxt=Math.floor(dur/60)+'h'+dur%60+'m';}
+  const habs=td.habs||{};
+  let tot=0,max=0;
+  HABITS.forEach(h=>{const st=habStatus(h.id,DK);if(st==='core'){tot+=(habs[h.id]||0);max+=2;}});
+  const pct=max>0?Math.round(tot/max*100):0;
+  return`[今日の状況: ${fmtD(NOW)} / 睡眠${sleepTxt} / LL売上${rev}万/60万目標 / 習慣スコア${pct}% / MIT①「${td.mit0||'未設定'}」 / 今週テーマ「${g['gl-wk-'+WK]||'未設定'}」 / 今年フォーカス「${g['gl-yr']||'未設定'}」]`;
+}
+
+function addChatBubble(role,text,id){
+  const wrap=document.getElementById('ai-chat-wrap');
+  if(!wrap)return;
+  const div=document.createElement('div');
+  div.className='ai-bubble '+role+(id?' typing':'');
+  if(id)div.id=id;
+  div.textContent=text;
+  wrap.appendChild(div);
+  wrap.scrollTop=wrap.scrollHeight;
+  return div;
+}
+
+function initAIChat(){
+  const wrap=document.getElementById('ai-chat-wrap');
+  if(!wrap||wrap.children.length>0)return;
+  const history=ld('ai_chat_history',[]);
+  if(history.length===0){
+    addChatBubble('ai','やあ、Kaiji。今日は何を話す？\n仕事の相談、悩み、BILINGOのアイデア、なんでも。');
+  }else{
+    history.forEach(m=>addChatBubble(m.role==='user'?'user':'ai',m.content));
+  }
+}
+
+async function sendAIChat(){
+  const key=ld('api_key','');
+  if(!key){alert2('設定でAPIキーを入力してください');nav('settings');return;}
+  const inp=document.getElementById('ai-chat-inp');
+  const msg=inp.value.trim();
+  if(!msg)return;
+  const btn=document.getElementById('ai-send-btn');
+  inp.value='';btn.disabled=true;
+  addChatBubble('user',msg);
+  const loadEl=addChatBubble('ai','...');
+  const history=ld('ai_chat_history',[]);
+  try{
+    const messages=[...history,{role:'user',content:buildAIContext()+'\n\n'+msg}];
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1024,system:JARVIS_SYSTEM,messages})
+    });
+    const data=await res.json();
+    const reply=data.content?.[0]?.text||'エラーが発生しました。';
+    if(loadEl){loadEl.textContent=reply;loadEl.classList.remove('typing');}
+    history.push({role:'user',content:msg});
+    history.push({role:'assistant',content:reply});
+    if(history.length>20)history.splice(0,history.length-20);
+    sv('ai_chat_history',history);
+  }catch(e){
+    if(loadEl)loadEl.textContent='エラー: '+e.message;
+  }
+  btn.disabled=false;
+  const wrap=document.getElementById('ai-chat-wrap');
+  if(wrap)wrap.scrollTop=wrap.scrollHeight;
+}
+
+function clearAIChat(){
+  sv('ai_chat_history',[]);
+  const wrap=document.getElementById('ai-chat-wrap');
+  if(wrap){wrap.innerHTML='';addChatBubble('ai','リセットした。また話しかけてくれ。');}
+}
 // ── Goals Tree ──
 const GOAL_KEYS=['gl-40','gl-30','gl-25','gl-yr'];
 function saveGoals(){
@@ -1553,6 +1815,7 @@ function saveGoalWeek(){
   const el=document.getElementById('gl-wk');
   if(el)d['gl-wk-'+WK]=el.value;
   sv('jarvis_goals',d);
+  updWkBanner();
 }
 function loadGoals(){
   const d=ld('jarvis_goals',{});
@@ -1570,12 +1833,22 @@ function loadGoals(){
 function saveMIT(){
   const d=ld('td_'+TK,{});
   ['mit-1','mit-2','mit-3'].forEach((k,i)=>{const el=document.getElementById(k);if(el)d['mit'+i]=el.value;});
+  // MIT① = 勝ち条件
+  d.win=d.mit0||'';
   sv('td_'+TK,d);
+  const et=document.getElementById('win-eve-txt');
+  if(et)et.textContent=d.win||'（MIT①を入力すると自動で設定されます）';
   updJarvis();
 }
 function loadMIT(){
   const d=ld('td_'+TK,{});
   ['mit-1','mit-2','mit-3'].forEach((k,i)=>{const el=document.getElementById(k);if(el&&d['mit'+i])el.value=d['mit'+i];});
+  // Update goals page MIT display
+  const md=document.getElementById('mit-disp');
+  if(md){
+    const items=['mit0','mit1','mit2'].map((k,i)=>d[k]?`① ② ③`.split(' ')[i]+' '+d[k]:'').filter(Boolean);
+    md.innerHTML=items.length?items.join('<br>'):'今日ページでMITを入力してください';
+  }
 }
 function saveRev2g(){
   const v=parseFloat(document.getElementById('rev-i2')?.value)||0;
@@ -1612,7 +1885,8 @@ if(ri){const v=ld('rev_'+mk(NOW),0);ri.value=v||'';if(v){const pct=Math.min(Math
 loadGoals();loadMIT();loadWRev();
 // Load today's win condition
 const d0=ld('td_'+TK,{});
-if(d0.win){const wi=document.getElementById('win-inp');if(wi)wi.value=d0.win;const wc=document.getElementById('win-c');if(wc)wc.className='win-c mb2'+(d0.winDone?' achieved':' declared');}
+if(d0.win){const wi=document.getElementById('win-inp');if(wi)wi.value=d0.win;const wc=document.getElementById('win-c');if(wc)wc.className='win-c'+(d0.winDone?' achieved':' declared');}
+updWinEve();
 if(d0.winDone){const wb=document.getElementById('win-btn');if(wb)wb.textContent='達成済み ✓';}
 // Load mood
 if(d0.mood){const map={'tired':'m-tired','normal':'m-normal','great':'m-great'};const mb=document.querySelector('.'+map[d0.mood]);if(mb)mb.classList.add('on');}
